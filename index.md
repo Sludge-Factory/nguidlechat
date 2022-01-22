@@ -25,6 +25,40 @@ Syntax highlighted code block
 
 [Link](url) and ![Image](src)
 ```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.socket.io/socket.io-3.0.1.min.js"></script>
+</head>
+<body>
+    
+    <input type="text" class="message">
+    <button onclick="sendMessage()">Send</button>
+    <h1></h1>
+    <script>
+
+        const socket = io('http://localhost:3005')
+
+        socket.on('connection')
+
+        socket.on('message', (data) => {
+            document.querySelector('h1').innerHTML = data
+        })
+        const sendMessage = () => {
+            const usertext = document.querySelector('.message')
+            const message = usertext.value
+            socket.emit('message', message)
+        }
+    </script>
+
+
+</body>
+</html>
+
 
 For more details see [Basic writing and formatting syntax](https://docs.github.com/en/github/writing-on-github/getting-started-with-writing-and-formatting-on-github/basic-writing-and-formatting-syntax).
 
